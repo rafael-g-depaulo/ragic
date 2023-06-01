@@ -1,6 +1,9 @@
 import { Route, Routes } from './types';
 
-// routes object should have the route names as props
-export const createRoutes = (routes: Route[]): Routes => {
-  return [] as Routes;
+// TODO: implement route dictionary creation
+export const createRoutes = <routeNames extends string>(
+  routes: Route<routeNames>[]
+): Routes<routeNames> => {
+  console.log(routes);
+  return {} as Routes<routeNames>;
 };
