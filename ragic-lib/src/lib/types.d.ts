@@ -18,5 +18,3 @@ export type Route<routeName extends string> =
   | LinkRoute<routeName>;
 
 export type Routes<names extends string> = { [name in names]: Route<name> };
-
-// TODO: Add route alias/link (e.g.: /news -> /blog/0)
