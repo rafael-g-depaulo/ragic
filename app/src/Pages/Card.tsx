@@ -1,13 +1,9 @@
 import React from "react";
-import Navbar from "../Components/Navbar/Navbar";
 
-export function Card() {
-  return (
-    <>
-      <Navbar />
-      <h2> this is a Card </h2>
-    </>
-  )
+function Card() {
+  return(
+    <h1> this is Card </h1>
+  );
 }
 
-export default Card
+export default Card; 
