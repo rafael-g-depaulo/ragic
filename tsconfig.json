@@ -15,7 +15,10 @@
         "name": "next"
       }
     ],
-    "types": ["jest", "node"]
+    "types": [
+      "jest",
+      "node"
+    ]
   },
   "include": [
     "**/*.ts",
@@ -23,7 +26,8 @@
     "**/*.jsx",
     ".next/types/**/*.ts",
     "dist/ragic/.next/types/**/*.ts",
-    "next-env.d.ts"
+    "next-env.d.ts",
+    "../.next/types/**/*.ts"
   ],
   "extends": "./tsconfig.base.json"
 }
