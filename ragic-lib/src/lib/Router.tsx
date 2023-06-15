@@ -1,11 +1,22 @@
 import React, { FC } from 'react';
-import { Routes } from './types';
+import { ConcreteRoute, Routes } from './types';
+import { createBrowserRouter, createHashRouter, RouterProvider } from 'react-router-dom';
 
 export interface RouterProps {
-  routes: Routes;
+  routes: Routes<string>;
 }
 
-export const Router: FC<RouterProps> = (props) => {
-  // TODO: actually implement routes
-  return <div>routes here</div>;
+export const Router: FC<RouterProps> = ({ routes}) => {
+  const routePath = []
+  
+  for (const item in routes) {
+    routePath.push({
+      path: "/" + routes[item].name,
+      element: (routes[item] as ConcreteRoute<typeof item>).component
+    })
+  }
+  const routes_ = createHashRouter(routePath)
+  return (
+    <RouterProvider router = {routes_} />
+  )
 };
