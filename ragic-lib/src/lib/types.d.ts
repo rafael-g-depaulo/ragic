@@ -1,6 +1,6 @@
 interface BaseRoute<routeName extends string> {
   readonly name: routeName;
-  children?: Route<routeName>[];
+  children: Route<routeName>[];
   aliases?: string[];
 }
 
