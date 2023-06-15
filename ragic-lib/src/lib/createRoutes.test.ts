@@ -5,7 +5,6 @@ describe('createRoutes', () => {
   it('creates a dictionary with the correct structure', () => {
     const routes = createRoutes([
       { name: 'home', component: {} as any },
-
       {
         name: 'blog',
         component: {} as any,
