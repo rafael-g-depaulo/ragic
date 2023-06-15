@@ -1,9 +1,19 @@
 import { Route, Routes } from './types';
 
-// TODO: implement route dictionary creation
 export const createRoutes = <routeNames extends string>(
   routes: Route<routeNames>[]
 ): Routes<routeNames> => {
-  console.log(routes);
-  return {} as Routes<routeNames>;
+  const dicRoutes = {} as Routes<routeNames>// as {[name in routeNames]: Route<routeNames>}
+
+  for (const route of routes){
+    if (route.children.length > 0) {
+      const subRoutes = createRoutes(route.children)
+      for (const [subName, subRoute] of Object.entries<Route<routeNames>>(subRoutes)) {
+        const subrouteName = (route.name + "/" + subName) as routeNames
+        dicRoutes[subrouteName] = subRoute
+      }
+    }
+    dicRoutes[route.name] = route
+  }  
+   return dicRoutes
 };
