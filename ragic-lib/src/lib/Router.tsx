@@ -1,10 +1,8 @@
 import React, { PropsWithChildren } from 'react';
 import { Routes } from './types';
 
-export interface RouterProps<
-  routeNames extends string extends routeNames ? never : string
-> extends PropsWithChildren {
-  routes: Routes<routeNames>;
+export interface RouterProps {
+  routes: Routes<string>;
 }
 
 export const Router = <
