@@ -40,7 +40,4 @@ Thumbs.db
 
 # Next.js
 .next
-
-# manual additions
 node_modules/.yarn-integrity
-
