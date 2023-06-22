@@ -1,19 +1,19 @@
 {
-  "name": "e2e",
+  "name": "app-react-router-e2e",
   "$schema": "../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "e2e/src",
+  "sourceRoot": "app-react-router-e2e/src",
   "projectType": "application",
   "targets": {
     "e2e": {
       "executor": "@nx/cypress:cypress",
       "options": {
-        "cypressConfig": "e2e/cypress.config.ts",
-        "devServerTarget": "ragic:serve:development",
+        "cypressConfig": "app-react-router-e2e/cypress.config.ts",
+        "devServerTarget": "app-react-router:start:development",
         "testingType": "e2e"
       },
       "configurations": {
         "production": {
-          "devServerTarget": "ragic:serve:production"
+          "devServerTarget": "app-react-router:start:production"
         }
       }
     },
@@ -26,5 +26,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["ragic"]
+  "implicitDependencies": ["app-react-router-e2e"]
 }
