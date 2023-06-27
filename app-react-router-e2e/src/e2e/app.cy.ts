@@ -6,6 +6,16 @@ describe('My First Test', () => {
 
 describe('test01', () => {
   it('Opens the home page', () =>{
-    cy.visit('google.com')
+    cy.visit('http://localhost:3000/home')
+  })
+})
+
+describe('test02', () => {
+  it('Clicks button "card" and visits the card page', () => {
+    cy.visit('http://localhost:3000/home')
+
+    cy.contains('Card').click()
+
+    cy.url().should('include', '/card')
   })
 })
