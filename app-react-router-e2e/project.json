@@ -8,6 +8,7 @@
       "executor": "@nx/cypress:cypress",
       "options": {
         "cypressConfig": "app-react-router-e2e/cypress.config.ts",
+
         "testingType": "e2e",
         "baseUrl": "http://localhost:3000/"
 
