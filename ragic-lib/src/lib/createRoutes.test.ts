@@ -3,8 +3,8 @@ import { createRoutes } from './createRoutes';
 
 describe('createRoutes', () => {
   it('creates a dictionary with the correct structure', () => {
-    const routes = createRoutes([
-      { name: 'home', component: {} as any },
+    const routes = createRoutes <"home" | "blog" | "blogpost" | "bloglist"> ([
+      { name: 'home', component: {} as any, children: [] },
       {
         name: 'blog',
         component: {} as any,
@@ -12,20 +12,22 @@ describe('createRoutes', () => {
           {
             name: 'blogpost',
             component: {} as any,
+            children: []
           },
           {
             name: 'bloglist',
             component: {} as any,
+            children: []
           }
         ],
       },
     ]);
 
     expect(routes).toMatchObject({
-      "name": { name: "name", component: {}},
+      "home": { name: "home", component: {}},
       "blog": { name: "blog", component: {}},
-      "blog/blogpost": { name: "blog/blogpost", component: {}},
-      "blog/bloglist": { name: "blog/bloglist", component: {}},
+      "blog/blogpost": { name: "blogpost", component: {}},
+      "blog/bloglist": { name: "bloglist", component: {}},
     })
   });
 });
