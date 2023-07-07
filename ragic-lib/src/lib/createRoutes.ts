@@ -10,7 +10,6 @@ export const createRoutes = <routeNames extends string>(
       const subRoutes = createRoutes(route.children)
       for (const [subName, subRoute] of Object.entries<Route<routeNames>>(subRoutes)) {
         const subrouteName = (route.name + "/" + subName) as routeNames
-        console.log("esse é subroutename " + subrouteName)
         dicRoutes[subrouteName] = subRoute;
       }
     }
