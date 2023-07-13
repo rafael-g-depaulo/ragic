@@ -3,7 +3,7 @@ import { Route, Routes } from './types';
 export const createRoutes = <routeNames extends string>(
   routes: Route<routeNames>[]  
 ): Routes<routeNames> => {
-  const dicRoutes = {} as Routes<routeNames>// as {[name in routeNames]: Route<routeNames>}
+  const dicRoutes = {} as Routes<routeNames>
 
   for (const route of routes){
     if (route.children.length > 0) {
