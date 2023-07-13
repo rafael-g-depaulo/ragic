@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { ConcreteRoute, Routes } from './types';
-import { createBrowserRouter, createHashRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 
 export interface RouterProps {
   routes: Routes<string>;
