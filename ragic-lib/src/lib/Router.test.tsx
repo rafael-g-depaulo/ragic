@@ -1,6 +1,5 @@
 import { Router } from './Router'
 import { render } from '@testing-library/react'
-import userEvent from '@testing-library/react'
 
 test ('receives an object with name of pages and returns components', async () => {
 
