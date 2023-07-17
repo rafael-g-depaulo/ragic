@@ -1,17 +1,16 @@
 import React, { PropsWithChildren } from 'react';
 import { Link as LinkReactRouterDom } from 'react-router-dom';
+import { ConcretePaths } from './types/paths';
 
-interface LinkProps<
-  routeNames extends string extends routeNames ? never : string
-> extends PropsWithChildren {
-  to: routeNames;
+// TODO: add state, push and replace functionality
+// TODO: add index param props, already typed
+
+interface LinkProps<UserRoutes> extends PropsWithChildren {
+  to: ConcretePaths<UserRoutes>;
 }
 
-export const Link = <
-  routeNames extends string extends routeNames ? never : string
->({
-  to,
-  children,
-}: LinkProps<routeNames>) => {
-  return <LinkReactRouterDom to={to}>{children}</LinkReactRouterDom>;
-};
+export const makeLink =
+  <UserRoutes,>() =>
+  ({ to, children }: LinkProps<UserRoutes>) => {
+    return <LinkReactRouterDom to={to}>{children}</LinkReactRouterDom>;
+  };
