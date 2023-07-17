@@ -13,7 +13,7 @@ export type SegmentProps<
 > =
   // if child concrete
   'concrete' extends Kind
-    ? Record<CompilePath<SegmentPath>, C>
+    ? Record<CompilePath<SegmentPath>, Component>
     : // if child link
     'link' extends Kind
     ? {}
@@ -24,7 +24,7 @@ export type SegmentProps<
 
 type SegmentKindOpts =
   | Record<string, never> // empty path (also optional, can just not give opts)
-  | { component: C } // concrete path (with "Page" or "Index" component)
+  | { component: Component } // concrete path (with "Page" or "Index" component)
   | { link_to: string }; // link path
 
 type SegmentChildrenOpts<Children> = unknown extends Children
