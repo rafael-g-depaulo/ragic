@@ -1,29 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import path from 'path';
 import { createRoutes } from './createRoutes';
 
 describe('createRoutes', () => {
   it('creates a dictionary with the correct structure', () => {
-    const routes = createRoutes <"home" | "blog" | "blogpost" | "bloglist"> ([
-      { name: 'home', component: {} as any, children: [] },
-      {
-        name: 'blog',
+    const routesPath = createRoutes ()
+      .path("/home", {component: {} as any})
+      .path("/blog", {
         component: {} as any,
-        children: [
-          {
-            name: 'blogpost',
-            component: {} as any,
-            children: []
-          },
-          {
-            name: 'bloglist',
-            component: {} as any,
-            children: []
-          }
-        ],
-      },
-    ]);
+        children: 
+          path("/post", {component: {} as any})
+          .path("/list", {component: {} as any})
+      })
+      .done()
 
-    expect(routes).toMatchObject({
+    expect(routesPath).toMatchObject({
       "home": { name: "home", component: {}},
       "blog": { name: "blog", component: {}},
       "blog/blogpost": { name: "blogpost", component: {}},
