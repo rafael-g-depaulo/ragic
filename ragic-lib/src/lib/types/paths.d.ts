@@ -1,10 +1,12 @@
 import { CompilePath } from './string-utils';
 
-export type ConcretePaths<RouteTree> = RouteTree extends Routes<infer RouteTree>
+// Get all concrete paths for a route tree
+export type ConcretePaths<UserRoutes> = UserRoutes extends Routes<
+  infer RouteTree
+>
   ? CompilePath<ConcretePathsRecursion<RouteTree, []>>
   : never;
-
-export type ConcretePathsRecursion<
+type ConcretePathsRecursion<
   RouteTree,
   AccumulatePath extends string[]
 > = unknown extends RouteTree

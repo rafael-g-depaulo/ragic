@@ -10,7 +10,7 @@ interface LinkProps<UserRoutes> extends PropsWithChildren {
 }
 
 export const makeLink =
-  <UserRoutes,>() =>
+  <UserRoutes,>(routes: UserRoutes) =>
   ({ to, children }: LinkProps<UserRoutes>) => {
     return <LinkReactRouterDom to={to}>{children}</LinkReactRouterDom>;
   };
