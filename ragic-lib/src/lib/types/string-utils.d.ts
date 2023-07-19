@@ -14,6 +14,7 @@ export type CompilePath<P extends string[]> = P extends []
   : P extends [infer A extends EnsureLiteral<A>, ...infer Rest extends string[]]
   ? JoinPaths<A, `${CompilePath<Rest>}`>
   : never;
+
 export type EnsureFromUnion<
   S extends string,
   Union extends EnsureLiteral<Union>
