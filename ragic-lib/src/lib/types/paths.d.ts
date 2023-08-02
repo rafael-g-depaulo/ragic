@@ -1,3 +1,5 @@
+import { Routes } from './route';
+import { ConcreteSegment, EmptySegment, LinkSegment } from './segment';
 import { CompilePath } from './string-utils';
 
 // Get all concrete paths for a route tree
@@ -18,6 +20,7 @@ type ConcretePathsRecursion<
       | ([] | unknown extends RestTree
           ? Child extends ConcreteSegment<
               infer ChildPathname extends string,
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
               infer _GrandChildren
             >
             ? [...AccumulatePath, ChildPathname]

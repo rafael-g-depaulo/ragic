@@ -1,30 +1,50 @@
-type ExtractGrandChildren<Route> = unknown extends Route
-  ? unknown
-  : Route extends IncompleteRoutes<infer Tree>
-  ? Tree
+import { EmptyObject, ExtractRouteTree } from './globals';
+import { Routes } from './route';
+import {
+  ConcreteSegment,
+  EmptySegment,
+  LinkSegment,
+  Segment,
+  SegmentKindOpts,
+  SegmentOpts,
+} from './segment';
+import { EnsureLiteral } from './string-utils';
+
+type PathFuncReturn<
+  RestTree extends unknown[],
+  PathName extends EnsureLiteral<PathName>,
+  Opts
+> = Opts extends SegmentOpts<infer Children>
+  ? 'component' extends keyof Opts
+    ? Routes<
+        [
+          ...RestTree,
+          Segment<PathName, ConcreteSegment, ExtractRouteTree<Children>>
+        ]
+      >
+    : // if link path
+    'link_to' extends keyof Opts
+    ? Routes<
+        [
+          ...RestTree,
+          Segment<PathName, LinkSegment, ExtractRouteTree<Children>>
+        ]
+      >
+    : // if empty path
+      Routes<
+        [
+          ...RestTree,
+          Segment<PathName, EmptySegment, ExtractRouteTree<Children>>
+        ]
+      >
   : never;
 
 export type PathFunc<RestTree extends unknown[] = []> = <
   PathName extends EnsureLiteral<PathName>,
-  GrandChildren,
-  Kind extends PathKinds
+  Opts extends SegmentKindOpts
 >(
   path: PathName,
-  opts: PathOpts<GrandChildren> & Kind
-) => // if concrete path
-'component' extends keyof Kind
-  ? IncompleteRoutes<
-      [
-        ...RestTree,
-        ConcreteSegment<PathName, ExtractGrandChildren<GrandChildren>>
-      ]
-    >
-  : // if link path
-  'link_to' extends keyof Kind
-  ? IncompleteRoutes<
-      [...RestTree, LinkSegment<PathName, ExtractGrandChildren<GrandChildren>>]
-    >
-  : // if empty path
-    IncompleteRoutes<
-      [...RestTree, EmptySegment<PathName, ExtractGrandChildren<GrandChildren>>]
-    >;
+  opts?: Opts
+) => SegmentKindOpts extends Opts
+  ? PathFuncReturn<RestTree, PathName, EmptyObject>
+  : PathFuncReturn<RestTree, PathName, Opts>;

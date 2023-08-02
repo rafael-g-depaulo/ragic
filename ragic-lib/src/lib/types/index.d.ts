@@ -1,6 +1,6 @@
-import { IncompleteRoutes } from './route-tree';
+import { Routes } from './route';
 
-export type RoutesFunc = () => IncompleteRoutes<[]>;
+export type RoutesFunc = () => Routes<[]>;
+
 export { type PathFunc } from './path-func';
-
-export { type Routes } from './route-tree.d.ts';
+export { type Routes } from './route';
