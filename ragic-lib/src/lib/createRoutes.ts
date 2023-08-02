@@ -7,7 +7,7 @@ export const createRoutes: RoutesFunc = ((
 
   for (const route in routes){
     if (route) {
-      
+
     }
   }
 
