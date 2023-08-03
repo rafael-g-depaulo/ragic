@@ -52,3 +52,27 @@ type ConcretePathsRecursion<
           : never)
       | ConcretePathsRecursion<RestTree, AccumulatePath>
   : never;
+
+export type IndexedPaths<
+  RouteTree extends unknown[],
+  AccumulatePath extends string[] = []
+> = RouteTree extends []
+  ? never
+  : RouteTree extends [infer Route, ...infer RestTree]
+  ? Route extends [
+      infer ChildName extends string,
+      infer ChildKind extends string,
+      infer GrandChildren extends unknown[]
+    ]
+    ? ChildName extends EnsureLiteral<ChildName>
+      ? ChildKind extends EnsureFromUnion<ChildKind, SegmentKinds>
+        ? // this segment
+          | IfIndexedPath<[...AccumulatePath, ChildName]>
+            // recur on siblins
+            | IndexedPaths<RestTree, AccumulatePath>
+            // recur on children
+            | IndexedPaths<GrandChildren, [...AccumulatePath, ChildName]>
+        : never
+      : never
+    : never
+  : never;
