@@ -53,6 +53,20 @@ type ConcretePathsRecursion<
       | ConcretePathsRecursion<RestTree, AccumulatePath>
   : never;
 
+export type IfIndexedPath<
+  SegmentPath extends string[],
+  AccPath extends string[] = []
+> = [] extends SegmentPath
+  ? never
+  : SegmentPath extends [
+      infer Segment extends string,
+      ...infer Rest extends string[]
+    ]
+  ? Segment extends `/:${infer _Index}`
+    ? CompilePath<[...AccPath, ...SegmentPath]>
+    : IfIndexedPath<Rest, [...AccPath, Segment]>
+  : never;
+
 export type IndexedPaths<
   RouteTree extends unknown[],
   AccumulatePath extends string[] = []
