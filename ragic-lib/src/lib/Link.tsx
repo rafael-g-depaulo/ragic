@@ -4,12 +4,19 @@ import { LinkProps } from './types/link';
 
 // TODO: add state, push and replace functionality
 
+const parseParams = (routeTemplate: string, params: Record<string, string>) =>
+  routeTemplate
+    .split('/')
+    .map((segment) => (segment[0] === ':' ? params[segment.slice(1)] : segment))
+    .join('/');
+
 export const makeLink =
   <UserRoutes,>(routes: UserRoutes) =>
   (props: LinkProps<UserRoutes>) => {
-    // TODO: parse and substitute params
-
     return (
-      <LinkReactRouterDom to={props.to}>{props.children}</LinkReactRouterDom>
+      <LinkReactRouterDom
+        to={parseParams(props.to, (props as any).params)}
+        children={props.children}
+      />
     );
   };
