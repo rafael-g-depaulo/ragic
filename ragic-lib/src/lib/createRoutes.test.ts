@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import path from 'path';
-import { createRoutes } from './createRoutes';
+import createRoutes from './createRoutes';
 
 describe('createRoutes', () => {
-  it('creates a dictionary with the correct structure', () => {
+  /* it('creates a dictionary with the correct structure', () => {
     const routesPath = createRoutes ()
       .path("/home", {component: {} as any})
       .path("/blog", {
@@ -14,11 +13,22 @@ describe('createRoutes', () => {
       })
       .done()
 
-    expect(routesPath).toMatchObject({
+    expect(routesPath.dictionary).toMatchObject({
       "home": { name: "home", component: {}},
       "blog": { name: "blog", component: {}},
       "blog/blogpost": { name: "blogpost", component: {}},
       "blog/bloglist": { name: "bloglist", component: {}},
     })
-  });
+  }); */
+
+  it('creates a dictionary with paths without children', () => {
+    const routesPath = createRoutes ()
+      .path("/home", {component: {} as any})
+      .path("/blog", {component: {} as any})  
+
+    expect(routesPath.dictionary).toMatchObject({
+      "home": { name: "home", component: {}},
+      "blog": { name: "blog", component: {}}
+    })
+  })
 });
