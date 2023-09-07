@@ -47,3 +47,9 @@ export type ConcretePaths<
       : never
     : never
   : never;
+
+export type NewRouteTree<
+  OldRouteTree extends unknown[],
+  PathName extends EnsureLiteral<PathName>,
+  Opts extends SegmentKindOpts
+> = ExtractRouteTree<PathFuncReturnByOpts<Opts, OldRouteTree, PathName>>;

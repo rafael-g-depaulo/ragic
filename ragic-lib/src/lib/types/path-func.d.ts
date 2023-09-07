@@ -39,6 +39,14 @@ type PathFuncReturn<
       >
   : never;
 
+export type PathFuncReturnByOpts<
+  UserOpts,
+  RestTree extends unknown[],
+  PathName extends EnsureLiteral<PathName>
+> = SegmentKindOpts extends UserOpts
+  ? PathFuncReturn<RestTree, PathName, EmptyObject>
+  : PathFuncReturn<RestTree, PathName, UserOpts>;
+
 export type PathFunc<RestTree extends unknown[] = []> = <
   PathName extends EnsureLiteral<PathName>,
   Opts extends SegmentKindOpts
