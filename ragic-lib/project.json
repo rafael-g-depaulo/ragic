@@ -7,14 +7,20 @@
   "targets": {
     "lint": {
       "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["ragic-lib/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "ragic-lib/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     },
     "build": {
       "executor": "@nx/vite:build",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/ragic-lib"
@@ -30,7 +36,9 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["coverage/ragic-lib"],
+      "outputs": [
+        "coverage/ragic-lib"
+      ],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../coverage/ragic-lib"
