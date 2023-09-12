@@ -1,6 +1,6 @@
-export * from "./lib/Link.js"
-export * from "./lib/Router.js"
-export * from "./lib/UseRoutes.js"
-export * from "./lib/createRoutes.js"
-export * from "./lib/useRouteParams.js"
+export * from "./lib/Link"
+export * from "./lib/Router"
+export * from "./lib/UseRoutes"
+export * from "./lib/createRoutes"
+export * from "./lib/useRouteParams"
 
