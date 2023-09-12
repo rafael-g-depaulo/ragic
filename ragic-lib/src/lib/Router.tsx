@@ -1,19 +1,26 @@
-import { FC } from 'react';
-import { Routes } from './types';
-import { createHashRouter, RouterProvider } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Component } from './types/globals';
 
-// TODO: implement
+// função que filtra o objeto de rotas pra só pegar as rotas mesmo, sem métodos internos e tal
+const getConcreteRoutes = <UseRoutes,>(routes: UseRoutes) =>
+  Object.fromEntries(
+    Object.entries(routes as object).filter(([key]) => key[0] === '/')
+  ) as { [k: string]: Component };
+
 export const makeRouter =
-	<UserRoutes,>(routes: UserRoutes) =>
-		() => {
-			// const routePath = [];
-			//
-			// for (const item in routes) {
-			//   routePath.push({
-			//     path: '/' + routes[item].name,
-			//     element: (routes[item] as ConcreteRoute<typeof item>).component,
-			//   });
-			// }
-			// const routes_ = createHashRouter(routePath);
-			// return <RouterProvider router={routes_} />;
-		};
+  <UserRoutes,>(routes: UserRoutes) =>
+    () => {
+      console.log('concrete routes', getConcreteRoutes(routes));
+      return (
+        <BrowserRouter>
+          <Routes>
+            {' '}
+            {Object.entries(getConcreteRoutes(routes)).map(
+              ([path, Component]) => (
+                <Route path={path} Component={Component} />
+              )
+            )}
+          </Routes>
+        </BrowserRouter>
+      );
+    };
