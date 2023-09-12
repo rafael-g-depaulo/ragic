@@ -37,15 +37,23 @@
       "!{projectRoot}/jest.config.[jt]s",
       "!{projectRoot}/.eslintrc.json"
     ],
-    "sharedGlobals": []
+    "sharedGlobals": ["{workspaceRoot}/babel.config.json"]
   },
   "generators": {
     "@nx/react": {
       "application": {
+        "style": "styled-components",
+        "linter": "eslint",
+        "bundler": "webpack",
         "babel": true
       },
       "library": {
+        "style": "styled-components",
+        "linter": "eslint",
         "unitTestRunner": "vitest"
+      },
+      "component": {
+        "style": "styled-components"
       }
     },
     "@nx/next": {
