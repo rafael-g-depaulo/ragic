@@ -53,24 +53,32 @@ type ConcretePathsRecursion<
       | ConcretePathsRecursion<RestTree, AccumulatePath>
   : never;
 
+type EnsurePathContainsIndexSegment<
+  Path extends string,
+  Acc extends string = ''
+> =
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  Path extends `/:${infer _Index}`
+    ? `${Acc}${Path}`
+    : Path extends `/${infer NonIndexSegment}/${infer Rest}`
+    ? EnsurePathContainsIndexSegment<`/${Rest}`, `${Acc}/${NonIndexSegment}`>
+    : never;
+
 export type IfIndexedPath<
-  SegmentPath extends string[],
+  Path extends string[],
   AccPath extends string[] = []
-> = [] extends SegmentPath
+> = [] extends Path
   ? never
-  : SegmentPath extends [
-      infer Segment extends string,
-      ...infer Rest extends string[]
-    ]
-  ? Segment extends `/:${infer _Index}`
-    ? CompilePath<[...AccPath, ...SegmentPath]>
+  : Path extends [infer Segment extends string, ...infer Rest extends string[]]
+  ? Segment extends EnsurePathContainsIndexSegment<Segment>
+    ? CompilePath<[...AccPath, ...Path]>
     : IfIndexedPath<Rest, [...AccPath, Segment]>
   : never;
 
 export type IndexedPaths<
   RouteTree extends unknown[],
   AccumulatePath extends string[] = []
-> = RouteTree extends []
+> = [] extends RouteTree
   ? never
   : RouteTree extends [infer Route, ...infer RestTree]
   ? Route extends [
