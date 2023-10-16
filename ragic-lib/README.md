@@ -8,11 +8,11 @@ Isso se dá por meio de um relacionamento entre o componente da página, o nome 
 
 ## Instalação
 ```
-npm i @ragic/ragiclib
+npm i ragic
 ```
 or
 ```
-yarn add @ragic/ragiclib
+yarn add ragic
 ```
 
 ## Definição das rotas
