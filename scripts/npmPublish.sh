@@ -13,7 +13,7 @@ update_kind=$(echo "major | minor | patch | premajor | preminor | prepatch | pre
 # Altera a versão nos package.jsons
 npm version $update_kind &>/dev/null
 cd ragic-lib
-npm version $update_kind &>/dev/null
+npm version --allow-same-version $update_kind &>/dev/null
 cd ..
 echo "✅ Package.json's atualizados"
 
@@ -26,7 +26,7 @@ cp ragic-lib/README.md dist/ragic-lib/README.md # copia o conteudo do README
 echo "✅ Docs copiados"
 
 cd dist/ragic-lib
-yarn npm publish --access=public
+npm publish --access=public
 echo "✅ Lib publicada"
 
 NEW_VERSION=$(cat ../ragic-lib/package.json | jq -r .version)
