@@ -26,13 +26,13 @@ cp ragic-lib/README.md dist/ragic-lib/README.md # copia o conteudo do README
 echo "✅ Docs copiados"
 
 cd dist/ragic-lib
-npm publish --access=public
+npm publish --access=public &>/dev/null
 echo "✅ Lib publicada"
 
 NEW_VERSION=$(cat ../ragic-lib/package.json | jq -r .version)
 git add -A
 git commit -m "Updating to version v$NEW_VERSION" &>/dev/null
-git tag "v$NEW_VERSION"
+git tag "v$NEW_VERSION" &>/dev/null
 echo "✅ Commit e tag v$NEW_VERSION criados!"
 echo "------------------------"
 echo "✅ Done!"
