@@ -1,7 +1,7 @@
 import React from 'react';
 
 // actual globals
-export type Component = (() => React.ReactElement) | React.ReactElement;
+export type Component = ((...props: unknown[]) => React.ReactElement) | React.ReactElement | React.FC;
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type EmptyObject = {};
 
