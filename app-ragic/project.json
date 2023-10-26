@@ -87,6 +87,23 @@
           "codeCoverage": true
         }
       }
+    },
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "app-ragic/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "app-ragic:serve",
+        "port": 0
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "app-ragic:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "app-ragic:serve-static"
+        }
+      }
     }
   },
   "tags": []
