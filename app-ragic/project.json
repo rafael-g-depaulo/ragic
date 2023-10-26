@@ -6,7 +6,9 @@
   "targets": {
     "build": {
       "executor": "@nx/webpack:webpack",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "compiler": "babel",
@@ -15,7 +17,10 @@
         "baseHref": "/",
         "main": "app-ragic/src/main.tsx",
         "tsConfig": "app-ragic/tsconfig.app.json",
-        "assets": ["app-ragic/src/favicon.ico", "app-ragic/src/assets"],
+        "assets": [
+          "app-ragic/src/favicon.ico",
+          "app-ragic/src/assets"
+        ],
         "styles": [],
         "scripts": [],
         "isolatedConfig": true,
@@ -63,9 +68,13 @@
     },
     "lint": {
       "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["./app-ragic/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "./app-ragic/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     },
     "serve-static": {
@@ -76,7 +85,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "app-ragic/jest.config.ts",
         "passWithNoTests": true
@@ -94,7 +105,7 @@
         "cypressConfig": "app-ragic/cypress.config.ts",
         "testingType": "e2e",
         "devServerTarget": "app-ragic:serve",
-        "port": 0
+        "port": 4201
       },
       "configurations": {
         "production": {
