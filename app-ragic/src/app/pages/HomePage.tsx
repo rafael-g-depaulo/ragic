@@ -73,11 +73,11 @@ const NavigationPannel = styled.main`
         transform: scale(1.2);
       }
     }
-
-		a {
-			text-decoration: none;
-		}
   }
+
+	a {
+		text-decoration: none;
+	}
 `
 
 export const HomePage = () => {
@@ -88,7 +88,7 @@ export const HomePage = () => {
         <PageTitle>🔷 Home Page 🔷</PageTitle>
 
         <NavigationPannel>
-          <span>All Pokemon</span>
+          <Link to="/pokemon/">All Pokemon</Link>
           <ul>
             {PokemonTypes.map(({ name, id }) => (
               <li>
