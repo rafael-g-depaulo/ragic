@@ -1,0 +1,33 @@
+{
+  "name": "app-react-router-dom-e2e",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "app-react-router-dom-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "app-react-router-dom-e2e/cypress.config.ts",
+        "devServerTarget": "app-react-router-dom:serve:development",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "app-react-router-dom:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "app-react-router-dom:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["app-react-router-dom-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["app-react-router-dom"]
+}
